@@ -21,6 +21,7 @@
 		0763E698200376E80010390F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0763E697200376E80010390F /* CoreTelephony.framework */; };
 		0763E69A200376F00010390F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0763E699200376F00010390F /* SystemConfiguration.framework */; };
 		0763E69C200376F70010390F /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0763E69B200376F70010390F /* libresolv.tbd */; };
+		07A51DA720074FBA00C2EE3D /* ARVideoSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A51DA620074FBA00C2EE3D /* ARVideoSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		0763E697200376E80010390F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		0763E699200376F00010390F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0763E69B200376F70010390F /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		07A51DA620074FBA00C2EE3D /* ARVideoSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARVideoSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				0763E688200375E10010390F /* ViewController.swift */,
+				07A51DA620074FBA00C2EE3D /* ARVideoSource.swift */,
 				0763E68F200376670010390F /* ARVideoRenderer.swift */,
 				0763E68E200376670010390F /* AgoraMetalShader.metal */,
 				0763E672200375440010390F /* Main.storyboard */,
@@ -181,6 +184,7 @@
 				0763E689200375E10010390F /* ViewController.swift in Sources */,
 				0763E690200376680010390F /* AgoraMetalShader.metal in Sources */,
 				0763E691200376680010390F /* ARVideoRenderer.swift in Sources */,
+				07A51DA720074FBA00C2EE3D /* ARVideoSource.swift in Sources */,
 				0763E66F200375440010390F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

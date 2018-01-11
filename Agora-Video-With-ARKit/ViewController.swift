@@ -16,24 +16,28 @@ class ViewController: UIViewController {
     
     fileprivate let agoraKit: AgoraRtcEngineKit = {
         let engine = AgoraRtcEngineKit.sharedEngine(withAppId: <#Your AppId#>, delegate: nil)
+        engine.setVideoProfile(.portrait360P, swapWidthAndHeight: false)
         engine.setChannelProfile(.liveBroadcasting)
-        engine.setClientRole(.audience)
+        engine.setClientRole(.broadcaster)
         engine.enableVideo()
-        engine.enableLocalVideo(false)
-        engine.setEnableSpeakerphone(true)
         return engine
     }()
     
+    fileprivate let videoSource = ARVideoSource()
     fileprivate var unusedScreenNodes = [SCNNode]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sceneView.delegate = self
+        sceneView.session.delegate = self
         sceneView.showsStatistics = true
         
         agoraKit.delegate = self
+        agoraKit.setVideoSource(videoSource)
         agoraKit.joinChannel(byToken: nil, channelId: "agoraar", info: nil, uid: 0, joinSuccess: nil)
+        
+        UIApplication.shared.isIdleTimerDisabled = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -57,19 +61,20 @@ class ViewController: UIViewController {
     
     @IBAction func doSceneViewTapped(_ recognizer: UITapGestureRecognizer) {
         let location = recognizer.location(in: sceneView)
-        let hitTestResults = sceneView.hitTest(location, types: .existingPlane)
         
-        if let result = hitTestResults.first {
-            let scene = SCNScene(named: "art.scnassets/displayer.scn")!
-            let rootNode = scene.rootNode
-            rootNode.simdTransform = result.worldTransform
-            sceneView.scene.rootNode.addChildNode(rootNode)
-            
-            let displayer = rootNode.childNode(withName: "displayer", recursively: false)!
-            let screen = displayer.childNode(withName: "screen", recursively: false)!
-            
-            unusedScreenNodes.append(screen)
+        guard let result = sceneView.hitTest(location, types: .existingPlane).first else {
+            return
         }
+        
+        let scene = SCNScene(named: "art.scnassets/displayer.scn")!
+        let rootNode = scene.rootNode
+        rootNode.simdTransform = result.worldTransform
+        sceneView.scene.rootNode.addChildNode(rootNode)
+        
+        let displayer = rootNode.childNode(withName: "displayer", recursively: false)!
+        let screen = displayer.childNode(withName: "screen", recursively: false)!
+        
+        unusedScreenNodes.append(screen)
     }
     
     private func showUnsupportedDeviceError() {
@@ -101,6 +106,12 @@ extension ViewController: ARSCNViewDelegate {
         let planeNode = SCNNode(geometry: plane)
         node.addChildNode(planeNode)
         planeNode.runAction(SCNAction.fadeOut(duration: 1))
+    }
+}
+
+extension ViewController: ARSessionDelegate {
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        videoSource.sendBuffer(frame.capturedImage, timestamp: frame.timestamp)
     }
 }
 
