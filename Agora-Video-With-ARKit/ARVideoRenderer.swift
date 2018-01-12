@@ -29,7 +29,7 @@ class ARVideoRenderer : NSObject {
     var renderNode: SCNNode?
 }
 
-extension ARVideoRenderer: AgoraVideoRendererProtocol {
+extension ARVideoRenderer: AgoraVideoSinkProtocol {
     func shouldInitialize() -> Bool {
         defaultLibrary = device?.makeDefaultLibrary()
         
