@@ -1,6 +1,6 @@
 # Agora Video With ARKit
 
-This quick start enables you to quickly get started with using an iOS ARKit sample application, to integrate live video chat functionality from the Agora Video SDK.
+This quickstart enables you to quickly get started with using an iOS ARKit sample application, to integrate live video chat functionality from the Agora Video SDK.
 
 This sample application demonstrates the basic Agora SDK features:
 
