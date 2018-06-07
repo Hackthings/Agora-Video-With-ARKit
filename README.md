@@ -51,9 +51,9 @@ This sample application requires two devices, and works in conjunction with the 
  
 2. Touch the plane indicator to add a virtual display screen to your AR session. The virtual display screen streams the video from the remote user.
 
-3. On a different device, launch the [OpenLive](https://github.com/AgoraIO/OpenLive-iOS) sample application using the app ID used in this project, and join the channel `agoraar` as a broadcaster.
+3. On a different device, launch the [OpenLive](https://github.com/AgoraIO/OpenLive-iOS) sample application using the app ID used in this project, and join the channel `agoraar` as a broadcaster. The virtual display screen from the previous step displays the video broadcast sent from this [OpenLive](https://github.com/AgoraIO/OpenLive-iOS) application.
 
-	The virtual display screen from step 2 displays the video broadcast sent from this [OpenLive](https://github.com/AgoraIO/OpenLive-iOS) application.
+	
 
 
 ## Steps to Create the Sample
@@ -712,10 +712,6 @@ Render the `node` with the `rgbTexture` by calling the `renderRGBTexture()` meth
 
 #### Extend ARVideo Renderer
 
-- [createTexture() Method](#createrexture()-method)
-- [createEmptyRGBTexture() Method](#createemptyrgbtexture()-method)
-- [renderRGBTexture() Method](#renderrgbtexture()-method)
-
 Create an extension to the `ARVideoRenderer`. This renderer will create textures for video rendering.
 
 ``` Swift
@@ -723,6 +719,11 @@ private extension ARVideoRenderer {
 	...
 }
 ```
+
+- [createTexture() Method](#createrexture()-method)
+- [createEmptyRGBTexture() Method](#createemptyrgbtexture()-method)
+- [renderRGBTexture() Method](#renderrgbtexture()-method)
+
 
 ##### createTexture() Method
 
@@ -803,8 +804,6 @@ Complete the encoding process with the `encoder.endEncoding()` method and commit
 
 ## Resources
 * Complete API documentation is available at the [Document Center](https://docs.agora.io/en/).
-* File bugs about this sample [here](https://github.com/AgoraIO/Agora-Video-With-ARKit/issues).
-* Learn how to [contribute code](contributions.md) to the sample project.
 
 ## License
 This software is licensed under the MIT License (MIT). [View the license](LICENSE.md).
