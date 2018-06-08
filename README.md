@@ -1,31 +1,31 @@
-# Agora Video With ARKit
+# Agora Video with ARKit
 
-This quickstart enables you to quickly get started with using an iOS ARKit sample application, to integrate live video chat functionality from the Agora Video SDK.
+This quick start enables you to integrate live video chat functionality from the Agora Video SDK using an iOS ARKit sample application.
 
-This sample application demonstrates the basic Agora SDK features:
+This sample application demonstrates the following basic Agora SDK functionality:
 
-- Send a captured ARFrame image to a live video channel
-- Render remote user ARSession video frames as SCNNodes
+- Sending a captured ARFrame image to a live video channel
+- Rendering remote user ARSession video frames as SCNNodes
 
 
 ## Prerequisites
-- Agora.io Developer Account
+- Agora.io developer account
 - Xcode 9.0+
-- Physical iPhone or iPad device (iOS Simulator is not supported)
+- Physical iPhone or iPad device (iOS simulator is not supported)
 
 ## Quick Start
 This section shows you how to prepare and build the Agora Video with the ARKit sample app.
 
 ### Create an Account and Obtain an App ID
-In order to build and run the sample application you must obtain an App ID: 
+To build and run the sample application, first obtain an app ID: 
 
-1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the signup process, you will be redirected to the Dashboard.
-2. Navigate in the Dashboard tree on the left to **Projects** > **Project List**.
-3. Copy the App ID that you obtained from the Dashboard into a text file. You will use this when you launch the app.
+1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the sign-up process, you are redirected to the dashboard.
+2. Navigate in the dashboard tree on the left to **Projects** > **Project List**.
+3. Copy the app ID that you obtained from the dashboard into a text file. You will use this when you launch the app.
 
 ### Update and Run the Sample Application 
 
-1. Open `Agora-Video-With-ARKit.xcodeproj` and edit `ViewController.swift` file. In the `agoraKit` declaration, update `<#Your AppId#>` with your App ID.
+1. Open `Agora-Video-With-ARKit.xcodeproj` and edit the `ViewController.swift` file. In the `agoraKit` declaration, update `<#Your AppId#>` with your app ID.
 
 	``` Swift
     fileprivate let agoraKit: AgoraRtcEngineKit = {
@@ -39,33 +39,33 @@ In order to build and run the sample application you must obtain an App ID:
 
 2. Download the [Agora Video SDK](https://www.agora.io/en/download/). Unzip the downloaded SDK package and copy the `libs/AograRtcEngineKit.framework` file into the `Agora-Video-With-ARKit` folder.
 
-	**Note:** Custom media device protocols are available in the Agora SDK 2.1.0
+	**Note:** Custom media device protocols are available in the Agora SDK 2.1.0.
 		
 3. Connect your iPhone／iPad device and run the project. Ensure a valid provisioning profile is applied or your project will not run.
 
 ### Using the Sample Application
 
-This sample application requires two devices, and works in conjunction with the [OpenLive](https://github.com/AgoraIO/OpenLive-iOS) sample application. 
+This sample application requires two devices and works in conjunction with the [OpenLive](https://github.com/AgoraIO/OpenLive-iOS) sample application. 
 
 1. Run the sample application. The device will display a flashing red plane indicator. Move the device until you find a horizontal surface.
  
 2. Touch the plane indicator to add a virtual display screen to your AR session. The virtual display screen streams the video from the remote user.
 
-3. On a different device, launch the [OpenLive](https://github.com/AgoraIO/OpenLive-iOS) sample application using the app ID used in this project, and join the channel `agoraar` as a broadcaster. The virtual display screen from the previous step displays the video broadcast sent from this [OpenLive](https://github.com/AgoraIO/OpenLive-iOS) application.
+3. On a different device, launch the [OpenLive](https://github.com/AgoraIO/OpenLive-iOS) sample application using the app ID and join the channel `agoraar` as a broadcaster. The virtual display screen from the previous step displays the video broadcast sent from this [OpenLive](https://github.com/AgoraIO/OpenLive-iOS) application.
 
 	
 
 
 ## Steps to Create the Sample
 
-The iOS ARKit sample application manages the Agora SDK and ARKit functionality through three main Swift files ([`ViewController`](#create-viewcontroller), [`ARVideoSource`](#create-arvideosource), [`ARVideoRenderer`](#create-arvideorenderer)).
+The iOS ARKit sample application manages the Agora SDK and ARKit functionality through three main Swift files: [`ViewController`](#create-viewcontroller), [`ARVideoSource`](#create-arvideosource), and [`ARVideoRenderer`](#create-arvideorenderer).
 
 - [Add Assets](#add-assets)
-- [Create Storyboard](#create-storyboard)
+- [Create the Storyboard](#create-storyboard)
 - [Add Frameworks](#add-frameworks)
-- [Create ViewController](#create-viewcontroller)
-- [Create ARVideoSource](#create-arvideosource)
-- [Create ARVideoRenderer](#create-arvideorenderer)
+- [Create the ViewController](#create-viewcontroller)
+- [Create the ARVideoSource](#create-arvideosource)
+- [Create the ARVideoRenderer](#create-arvideorenderer)
 
 ### Add Assets
 
@@ -73,23 +73,23 @@ Create a folder named `art.scnassets` and add the `displayer.scn` scene file. Th
 
 ![displayer_scn.jpg](images/displayer_scn.jpg)
 
-### Create Storyboard
+### Create the Storyboard
 
 Open the `main.storyboard` file in XCode's **Interface Builder**.
 
 1. Add an `ARSCNView` object to the stage. This will be the main view for the ARKit application. 
 
-	**Note:** This `ARSCNView` connects to the `sceneView` variable in the [`ViewController`](#create-viewcontroller).
+	**Note:** This `ARSCNView` connects to the `sceneView` variable in [`ViewController`](#create-viewcontroller).
 
-2. Add a `TapGestureRecogniser` to the `ViewController`. Set the referencing outlet connection to the `ARSCNView` created in Step 1.
+2. Add the `TapGestureRecogniser` to the `ViewController`. Set the referencing outlet connection to the `ARSCNView` object created in Step 1.
 
-	**Note:** This `TapGestureRecogniser` will connect to the `doSceneViewTapped()` selector method in the [`ViewController`](#create-viewcontroller).
+	**Note:** The `TapGestureRecogniser` connects to the `doSceneViewTapped()` selector method in [`ViewController`](#create-viewcontroller).
 
 ![storyboard.jpg](images/storyboard.jpg)
 
 ### Add Frameworks
 
-In the project's **Build Phases** window, ensure the following frameworks are added to the project.
+In the project's **Build Phases** window, ensure the following frameworks are added to the project:
 
 - `AgoraRtcEngineKit.framework`
 - `libresolv.tbd`
@@ -100,23 +100,23 @@ In the project's **Build Phases** window, ensure the following frameworks are ad
 
 ![xcode-build-phases.jpg](images/xcode-build-phases.jpg)
 
-### Create ViewController
+### Create the ViewController
 
 The `ViewController` handles the main functionality for the sample application.
 
 - [Add Import Statements and Add Global Variables](#add-import-statements-and-add-global-variables)
-- [Initialize View and Agora Kit](#initialize-view-and-agora-kit)
+- [Initialize the Scene View and the Agora Kit](#initialize-view-and-agora-kit)
 - [Create Configuration, Run, and Pause ARSCene](#create-configuration,-run,-and-pause-arscene)
-- [Handle Tap Gesture and Add Agora Screen Display](#handle-tap-gesture-and-add-agora-screen-display)
-- [Handle Unsupported Device Error](#handle-unsupported-device-error)
-- [Extend ARSCNView Delegate](#extend-arscnview-delegate)
-- [Extend ARSession Delegate](#extend-arsession-delegate)
-- [Extend Agora RTC Engine Delegate](#extend-agora-rtc-engine-delegate)
+- [Handle the Tap Gesture Recognizer and Add the Agora Screen Display](#handle-tap-gesture-and-add-agora-screen-display)
+- [Handle the Unsupported Device Error](#handle-unsupported-device-error)
+- [Extend the ARSCNView Delegate](#extend-arscnview-delegate)
+- [Extend the ARSession Delegate](#extend-arsession-delegate)
+- [Extend the Agora RTC Engine Delegate](#extend-agora-rtc-engine-delegate)
 
 #### Add Import Statements and Add Global Variables
 
 ##### Add Import Statements
-Add the following frameworks to access the iOS UI components, AR features, and Agora SDK.
+Add the following frameworks to access the iOS UI components, AR features, and Agora SDK:
 
 ``` Swift
 import UIKit
@@ -131,7 +131,7 @@ Framework name|Description
 
 ##### Add and Initialize Global Variables
 
-Initialize the AR video source `videoSource` and `unusedScreenNodes`, which is an array of unused scene nodes within the application.
+Initialize the AR video source `videoSource` and `unusedScreenNodes`, an array of unused scene nodes within the application.
 
 ``` Swift
 class ViewController: UIViewController {
@@ -147,7 +147,7 @@ class ViewController: UIViewController {
 }
 ```
 
-Initialize the Agora RTC engine `agoraKit`. Configure the agora engine with:
+Initialize the Agora RTC engine `agoraKit`. Configure the Agora engine with:
 
 Configuration type|Method
 ----|----
@@ -170,7 +170,7 @@ Enable video|`engine.enableVideo()` enables video.
 ```
 
 
-#### Initialize View and Agora Kit
+#### Initialize the Scene View and the Agora Kit
 
 In the application `viewDidLoad()` method, add the scene view settings.
 
@@ -206,7 +206,7 @@ Join the Agora channel using `agoraKit.joinChannel()` and disable the applicatio
 
 #### Create Configuration, Run, and Pause ARSCene
 
-The sample application requires `ARWorldTrackingConfiguration`. This is a configuration that uses the back-facing camera, tracks a device's orientation and position, and detects real-world surfaces.
+The sample application requires the `ARWorldTrackingConfiguration`. This configuration uses the back-facing camera, tracks a device's orientation and position, and detects real-world surfaces.
 
 Ensure that the AR tracking configuration is supported in the `viewDidAppear()` method using `ARWorldTrackingConfiguration.isSupported`.
 
@@ -234,7 +234,7 @@ Ensure that the AR tracking configuration is supported in the `viewDidAppear()` 
     
 ```
 
-In the `viewWillDisappear()` method, pause the scene view session using `sceneView.session.pause()`.
+In the `viewWillDisappear()` method, pause the scene view session using `sceneView.session.pause()`:
 
 ``` Swift
     override func viewWillDisappear(_ animated: Bool) {
@@ -244,7 +244,7 @@ In the `viewWillDisappear()` method, pause the scene view session using `sceneVi
     
 ```
 
-#### Handle Tap Gesture and Add Agora Screen Display
+#### Handle the Tap Gesture Recognizer and Add the Agora Screen Display
 
 The `doSceneViewTapped()` method adds the Agora display view to the AR scene. This method is applied to the tap gesture recognizer created in the [storyboard](#create-storyboard).
 
@@ -254,7 +254,7 @@ The `doSceneViewTapped()` method adds the Agora display view to the AR scene. Th
     }
 ```
 
-Conduct a hit test on the tap, to ensure it hits a real-world existing plane using `sceneView.hitTest()`. If the tap is unsuccessful, terminate the method with a `return`.
+Conduct a hit test on the tap, to ensure it hits a real-world existing plane using the `sceneView.hitTest()`. If the tap is unsuccessful, terminate the method with a `return`.
 
 ``` Swift
         let location = recognizer.location(in: sceneView)
@@ -267,7 +267,7 @@ Conduct a hit test on the tap, to ensure it hits a real-world existing plane usi
 If the tap is successful: 
 
 - Create a `SCNScene` with the `displayer.scn` asset.
-- Set the root node of the scene to 
+- Set the root node of the scene. 
      
 
 Apply the `worldTransform` of the tapped `result` to the scene's `rootNode` using `rootNode.simdTransform = result.worldTransform`. This aligns `rootNode` with the real-world scene.
@@ -279,7 +279,7 @@ Apply the `worldTransform` of the tapped `result` to the scene's `rootNode` usin
         sceneView.scene.rootNode.addChildNode(rootNode)
 ```
 
-Find the scene's `displayer` node and append its `screen` to the unused screen nodes array `unusedScreenNodes.append()`.
+Find the scene's `displayer` node and append its `screen` to the unused screen nodes array `unusedScreenNodes.append()`:
 
 ``` Swift
         let displayer = rootNode.childNode(withName: "displayer", recursively: false)!
@@ -288,9 +288,9 @@ Find the scene's `displayer` node and append its `screen` to the unused screen n
         unusedScreenNodes.append(screen)    
 ```
 
-#### Handle Unsupported Device Error
+#### Handle the Unsupported Device Error
 
-The `showUnsupportedDeviceError()` method ensures the device supports 6DOF world tracking, and alerts the user if world tracking is not supported.
+The `showUnsupportedDeviceError()` method ensures the device supports 6DOF world tracking and alerts the user if world tracking is not supported.
 
 Create a `UIAlertController`, apply an `OK` button, and display the alert to the user using `present()`.
 
@@ -309,7 +309,7 @@ Create a `UIAlertController`, apply an `OK` button, and display the alert to the
     }
 ```
 
-#### Extend ARSCNView Delegate
+#### Extend the ARSCNView Delegate
 
 Create an extension to the `ARSCNViewDelegate`. The `renderer()` method triggers when a `node` is added to the scene.
 
@@ -321,7 +321,7 @@ extension ViewController: ARSCNViewDelegate {
 }
 ```
 
-When a `node` is added, create a `SCNBox` and apply a red texture using `plane.firstMaterial?.diffuse.contents = UIColor.red`.
+When a `node` is added, create a `SCNBox` and apply a red texture using `plane.firstMaterial?.diffuse.contents = UIColor.red`:
 
 ``` Swift
         guard let planeAnchor = anchor as? ARPlaneAnchor else {
@@ -335,9 +335,9 @@ When a `node` is added, create a `SCNBox` and apply a red texture using `plane.f
         plane.firstMaterial?.diffuse.contents = UIColor.red     
 ```
 
-Create a new `SCNNode` using the geometry from the `plane`, and add this `planeNode` as a child node to `node`.
+Create a new `SCNNode` using the geometry from the `plane` and add this `planeNode` as a child node to `node`.
 
-Complete the `render()` method by animating a fade out action on `planeNode` using `planeNode.runAction()`.
+Complete the `render()` method by animating a fade-out action on `planeNode` using `planeNode.runAction()`.
 
 ``` Swift
         let planeNode = SCNNode(geometry: plane)
@@ -345,7 +345,7 @@ Complete the `render()` method by animating a fade out action on `planeNode` usi
         planeNode.runAction(SCNAction.fadeOut(duration: 1))
 ```
 
-#### Extend ARSession Delegate
+#### Extend the ARSession Delegate
 
 Create an extension to the `ARSessionDelegate`. The `session()` method triggers when an `ARFrame` is updated within an `ARSession`.
 
@@ -359,9 +359,9 @@ extension ViewController: ARSessionDelegate {
 }
 ```
 
-#### Extend Agora RTC Engine Delegate
+#### Extend the Agora RTC Engine Delegate
 
-Create an extension to the `AgoraRtcEngineDelegate`. This delegate will handle listeners for the Agora RTC Engine through a series of `rtcEngine()` methods.
+Create an extension to the `AgoraRtcEngineDelegate`. This delegate handle listeners for the Agora RTC engine through a series of `rtcEngine()` methods.
 
 ``` Swift
 extension ViewController: AgoraRtcEngineDelegate {
@@ -417,13 +417,13 @@ The `didRejoinChannel` event listens for users that rejoin the channel. The samp
 
 ##### didJoinedOfUid Listener
 
-The `didJoinedOfUid` event listens for users that join an Agora session. This event listener is used to set the display for the user.
+The `didJoinedOfUid` event listens for users that join an Agora session. This event listener sets the display for the user.
 
-- The sample application logs a the user ID `uid` of the user and checks if the `unusedScreenNodes` array is empty.
+- The sample application logs the user ID `uid` of the user and checks if the `unusedScreenNodes` array is empty.
 
 - If `unusedScreenNodes` is not empty, the first screen node is removed using `unusedScreenNodes.removeFirst()`.
 
-- Create an `ARVideoRenderer` and apply the `screenNode` as the `renderNode` using renderer.renderNode.
+- Create an `ARVideoRenderer` and apply the `screenNode` as the `renderNode` using `renderer.renderNode`.
 
 - Set the `renderer` as the remote video renderer for the user using `agoraKit.setRemoteVideoRenderer()`.
 
@@ -444,7 +444,7 @@ The `didJoinedOfUid` event listens for users that join an Agora session. This ev
     }
 ```
 
-### Create ARVideoSource
+### Create the ARVideoSource
 
 - [Add Import Statements and Define Global Variables](#add-import-statements-and-define-global-variables)
 - [Add Initialization, Start, Stop, and Dispose Methods](#add-initialization,-start,-stop,-and-dispose-methods)
@@ -459,7 +459,7 @@ import UIKit
 import AgoraRtcEngineKit
 ```
 
-Define the global variable `AgoraVideoFrameConsumer`, which will be used to manage video buffering.
+Define the global variable `AgoraVideoFrameConsumer` to manage video buffering:
 
 ``` Swift
 class ARVideoSource: NSObject, AgoraVideoSourceProtocol {
@@ -495,7 +495,7 @@ Method|Description
 
 The `bufferType()` and `sendBuffer()` methods handle buffering for the Agora video.
 
-The `bufferType()` returns the AgoraVideoBufferType type with a  static value of `.pixelBuffer`. 
+The `bufferType()` returns the `AgoraVideoBufferType` type with a  static value of `.pixelBuffer`. 
 
 ``` Swift
     func bufferType() -> AgoraVideoBufferType {
@@ -512,12 +512,12 @@ The `sendBuffer()` method sends the `CVPixelBuffer` and associated `TimeInterval
     }
 ```
 
-### Create ARVideoRenderer
+### Create the ARVideoRenderer
 
 - [Add Import Statements](#add-import-statements)
 - [Define Global Variables](#define-global-variables)
-- [Extend Agora Video Sync Protocol](#extend-agora-video-sync-protocol)
-- [Extend ARVideo Renderer](#extend-arvideo-renderer)
+- [Extend the Agora Video Sync Protocol](#extend-agora-video-sync-protocol)
+- [Extend the ARVideo Renderer](#extend-arvideo-renderer)
 
 #### Add Import Statements
 
@@ -555,9 +555,9 @@ class ARVideoRenderer : NSObject {
 
 Create a `MTLCreateSystemDefaultDevice`, which references the system default Metal device.
 
-Define a `MTLCommandQueue` which is used to queue buffers for the `device` to execute.
+Define a `MTLCommandQueue`, which queues buffers for the `device` to execute.
 
-Define a default `MTLLibrary` which is used to contains Metal shading language source code.
+Define a default `MTLLibrary`, which contains Metal shading language source code.
 
 ``` Swift
     fileprivate let device = MTLCreateSystemDefaultDevice()
@@ -568,7 +568,7 @@ Define a default `MTLLibrary` which is used to contains Metal shading language s
 
 Define `threadsPerThreadgroup` and `threadgroupsPerGrid` sizes using `MTLSizeMake`.
 
-Define a `MTLComputePipelineState` object which is used to contain the compute function and configuration state for the `device`.
+Define a `MTLComputePipelineState` object, which contains the compute function and configuration state for the `device`.
     
 ``` Swift
     fileprivate var threadsPerThreadgroup = MTLSizeMake(16, 16, 1)
@@ -576,15 +576,15 @@ Define a `MTLComputePipelineState` object which is used to contain the compute f
     fileprivate var pipelineState: MTLComputePipelineState?
 ```
 
-Complete the `ARVideoRenderer` class by defining an optional `SCNNode`.
+Complete the `ARVideoRenderer` class by defining an optional `SCNNode`:
     
 ``` Swift
     var renderNode: SCNNode?
 ```
 
-#### Extend Agora Video Sync Protocol
+#### Extend the Agora Video Sync Protocol
 
-Create an extension to the `AgoraVideoSinkProtocol`. This protocol will handle listeners for the Agora RTC Engine and add rendering functionality.
+Create an extension to the `AgoraVideoSinkProtocol`. This protocol handles listeners for the Agora RTC engine and adds rendering functionality:
 
 ``` Swift
 extension ARVideoRenderer: AgoraVideoSinkProtocol {
@@ -630,7 +630,7 @@ Method|Description
 
 The `shouldInitialize()` method sets the default library for the device using `device?.makeDefaultLibrary()`.
 
-The Metal shading language source code from `defaultLibrary` is applied to the `device` using `device.makeComputePipelineState()` and adds creates the device's `commandQueue`.
+The Metal shading language source code from `defaultLibrary` is applied to the `device` using `device.makeComputePipelineState()` and creates the device's `commandQueue`.
 
 ``` Swift
     func shouldInitialize() -> Bool {
@@ -647,7 +647,7 @@ The Metal shading language source code from `defaultLibrary` is applied to the `
 ```
 ##### shouldDispose() Method
 
-The `shouldDispose()` method clears all the global textures, bringing them back to their default state.
+The `shouldDispose()` method clears all the global textures, setting them to their default states:
     
 ``` Swift
     func shouldDispose() {
@@ -662,9 +662,9 @@ The `shouldDispose()` method clears all the global textures, bringing them back 
 
 The `bufferType()` and `pixelFormat()` methods define the type of buffer and pixel format for the Agora engine.
 
-The `bufferType()` returns the a static value of `.pixelBuffer`. 
+The `bufferType()` returns a static value of `.pixelBuffer`. 
 
-The `pixelFormat()` returns the a static value of `.I420`. 
+The `pixelFormat()` returns a static value of `.I420`. 
 
 ``` Swift
     func bufferType() -> AgoraVideoBufferType {
@@ -710,9 +710,9 @@ Render the `node` with the `rgbTexture` by calling the `renderRGBTexture()` meth
     }
 ```
 
-#### Extend ARVideo Renderer
+#### Extend the ARVideo Renderer
 
-Create an extension to the `ARVideoRenderer`. This renderer will create textures for video rendering.
+Create an extension to the `ARVideoRenderer`. This renderer creates textures for video rendering.
 
 ``` Swift
 private extension ARVideoRenderer {
@@ -771,11 +771,11 @@ The `rgbTexture` is created from a `rgbaDescriptor` using `device?.makeTexture()
 
 The `renderRGBTexture()` method encodes the textures for the `buffer`.
 
-The `encoder` is created from the `commandQueue` buffer using `buffer.makeComputeCommandEncoder()`.
+The `encoder` is created from the `commandQueue` buffer using the `buffer.makeComputeCommandEncoder()`.
 
-The encoding process for `encoder` includes:
+The encoding process for the `encoder` includes:
 
-- Applying `state` using `encoder.setComputePipelineState()`
+- Applying the `state` using `encoder.setComputePipelineState()`
 - Applying textures using `encoder.setTexture()`
 - Dispatching thread groups using `encoder.dispatchThreadgroups()`
 
